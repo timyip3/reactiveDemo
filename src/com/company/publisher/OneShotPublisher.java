@@ -45,7 +45,6 @@ public class OneShotPublisher implements Publisher<Integer> {
                         } catch (ExecutionException | InterruptedException e) {
                             e.printStackTrace();
                         }
-                        //subscriber.onComplete();
                     });
 
                     try {

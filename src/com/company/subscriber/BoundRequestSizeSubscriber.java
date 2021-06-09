@@ -1,7 +1,6 @@
 package com.company.subscriber;
 
 import java.util.concurrent.Flow.*;
-import java.util.function.Consumer;
 
 public class BoundRequestSizeSubscriber<T> implements Subscriber<T> {
     Subscription subscription;
