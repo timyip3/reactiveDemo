@@ -4,7 +4,7 @@ import java.util.concurrent.Flow;
 
 public class PrintSubscriber implements Flow.Subscriber<Integer> {
     private Flow.Subscription subscription;
-    private final String name;
+    private String name;
 
     public PrintSubscriber(String name) {
         this.name = name;
@@ -13,16 +13,13 @@ public class PrintSubscriber implements Flow.Subscriber<Integer> {
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
-        subscription.request(1);
+//        subscription.request(1);
     }
 
     @Override
     public void onNext(Integer item) {
         System.out.println("PrintSubscriber " + name + " received item: " + item);
-//        if (item > 5)
-//            throw new RuntimeException("item > 5");
-
-        subscription.request(10);
+        //subscription.request(1);
     }
 
     @Override
