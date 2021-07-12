@@ -7,23 +7,19 @@ import java.util.concurrent.BlockingQueue;
  */
 public class Consumer implements Runnable {
     private BlockingQueue<Integer> blockingQueue;
+    private String name;
 
-    public Consumer(BlockingQueue<Integer> blockingQueue) {
+    public Consumer(BlockingQueue<Integer> blockingQueue, String name) {
         this.blockingQueue = blockingQueue;
+        this.name = name;
     }
 
     @Override
     public void run() {
         while (!blockingQueue.isEmpty()) {
             Integer element = blockingQueue.element();
-            System.out.println("Consumer: element = " + element);
+            System.out.printf("Consumer: %s element = %s%n", name, element);
             blockingQueue.remove(element);
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

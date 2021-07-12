@@ -14,9 +14,8 @@ public class BoundRequestSizeSubscriber<T> implements Subscriber<T> {
     @Override
     public void onSubscribe(Subscription subscription) {
         System.out.println("BoundRequestSizeSubscriber: onSubscribe");
-        long initialRequestSize = bufferSize;
         count = bufferSize - bufferSize / 2; // re-request when half consumed
-        (this.subscription = subscription).request(initialRequestSize);
+        (this.subscription = subscription).request(bufferSize);
     }
 
     @Override

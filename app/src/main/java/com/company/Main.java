@@ -4,6 +4,7 @@ import com.company.blockingqueue.Consumer;
 import com.company.blockingqueue.Producer;
 import com.company.processor.DoubleProcessor;
 import com.company.subscriber.*;
+import io.reactivex.rxjava3.core.Flowable;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -45,16 +46,14 @@ public class Main {
         completableFuture.get();
     }
 
-    private static void blockingQueue() {
-        BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<Integer>(20);
+    private static void blockingQueue() throws InterruptedException {
+        BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<Integer>(200, true);
 
-        Producer producer = new Producer(blockingQueue);
-        Consumer consumer = new Consumer(blockingQueue);
-        Consumer consumer1 = new Consumer(blockingQueue);
+        Producer producer = new Producer(blockingQueue, "producer-1");
+        Consumer consumer = new Consumer(blockingQueue, "consumer-1");
 
         producer.run();
         consumer.run();
-        consumer1.run();
     }
 
     private static void onePublisherWithMultipleSubscriber() throws InterruptedException, ExecutionException {
